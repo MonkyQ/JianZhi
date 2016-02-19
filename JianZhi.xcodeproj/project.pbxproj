@@ -15,6 +15,14 @@
 		D1A288021C76AF9F00A22F7D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1A288001C76AF9F00A22F7D /* LaunchScreen.storyboard */; };
 		D1A2880D1C76AFA000A22F7D /* JianZhiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D1A2880C1C76AFA000A22F7D /* JianZhiTests.m */; };
 		D1A288181C76AFA000A22F7D /* JianZhiUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = D1A288171C76AFA000A22F7D /* JianZhiUITests.m */; };
+		D1A288481C76B47400A22F7D /* MKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1A288471C76B47400A22F7D /* MKViewController.m */; };
+		D1A288501C76B65400A22F7D /* MKHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1A2884E1C76B65400A22F7D /* MKHomePageViewController.m */; };
+		D1A288551C76B66D00A22F7D /* MKGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1A288531C76B66D00A22F7D /* MKGroupViewController.m */; };
+		D1A288561C76B66D00A22F7D /* MKGroupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1A288541C76B66D00A22F7D /* MKGroupViewController.xib */; };
+		D1A2885A1C76B68500A22F7D /* MKMyJobViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1A288581C76B68500A22F7D /* MKMyJobViewController.m */; };
+		D1A2885B1C76B68500A22F7D /* MKMyJobViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1A288591C76B68500A22F7D /* MKMyJobViewController.xib */; };
+		D1A2885F1C76B68F00A22F7D /* MKMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1A2885D1C76B68F00A22F7D /* MKMineViewController.m */; };
+		D1A288601C76B68F00A22F7D /* MKMineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1A2885E1C76B68F00A22F7D /* MKMineViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +59,21 @@
 		D1A288131C76AFA000A22F7D /* JianZhiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JianZhiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1A288171C76AFA000A22F7D /* JianZhiUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JianZhiUITests.m; sourceTree = "<group>"; };
 		D1A288191C76AFA000A22F7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D1A288451C76B31600A22F7D /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		D1A288461C76B47400A22F7D /* MKViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKViewController.h; sourceTree = "<group>"; };
+		D1A288471C76B47400A22F7D /* MKViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKViewController.m; sourceTree = "<group>"; };
+		D1A2884D1C76B65400A22F7D /* MKHomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MKHomePageViewController.h; path = ../MKHomePageViewController.h; sourceTree = "<group>"; };
+		D1A2884E1C76B65400A22F7D /* MKHomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MKHomePageViewController.m; path = ../MKHomePageViewController.m; sourceTree = "<group>"; };
+		D1A288521C76B66D00A22F7D /* MKGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MKGroupViewController.h; path = ../MKGroupViewController.h; sourceTree = "<group>"; };
+		D1A288531C76B66D00A22F7D /* MKGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MKGroupViewController.m; path = ../MKGroupViewController.m; sourceTree = "<group>"; };
+		D1A288541C76B66D00A22F7D /* MKGroupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MKGroupViewController.xib; path = ../MKGroupViewController.xib; sourceTree = "<group>"; };
+		D1A288571C76B68500A22F7D /* MKMyJobViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MKMyJobViewController.h; path = ../MKMyJobViewController.h; sourceTree = "<group>"; };
+		D1A288581C76B68500A22F7D /* MKMyJobViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MKMyJobViewController.m; path = ../MKMyJobViewController.m; sourceTree = "<group>"; };
+		D1A288591C76B68500A22F7D /* MKMyJobViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MKMyJobViewController.xib; path = ../MKMyJobViewController.xib; sourceTree = "<group>"; };
+		D1A2885C1C76B68F00A22F7D /* MKMineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MKMineViewController.h; path = ../MKMineViewController.h; sourceTree = "<group>"; };
+		D1A2885D1C76B68F00A22F7D /* MKMineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MKMineViewController.m; path = ../MKMineViewController.m; sourceTree = "<group>"; };
+		D1A2885E1C76B68F00A22F7D /* MKMineViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MKMineViewController.xib; path = ../MKMineViewController.xib; sourceTree = "<group>"; };
+		D1A2887C1C76C11100A22F7D /* PreConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreConfig.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +124,12 @@
 		D1A287F11C76AF9F00A22F7D /* JianZhi */ = {
 			isa = PBXGroup;
 			children = (
+				D1A288491C76B61700A22F7D /* 个人中心 */,
+				D1A2884A1C76B61700A22F7D /* 群 */,
+				D1A2884B1C76B61700A22F7D /* 首页 */,
+				D1A2884C1C76B61700A22F7D /* 我的报名 */,
+				D1A288461C76B47400A22F7D /* MKViewController.h */,
+				D1A288471C76B47400A22F7D /* MKViewController.m */,
 				D1A287F51C76AF9F00A22F7D /* AppDelegate.h */,
 				D1A287F61C76AF9F00A22F7D /* AppDelegate.m */,
 				D1A287F81C76AF9F00A22F7D /* ViewController.h */,
@@ -110,6 +139,8 @@
 				D1A288001C76AF9F00A22F7D /* LaunchScreen.storyboard */,
 				D1A288031C76AF9F00A22F7D /* Info.plist */,
 				D1A287F21C76AF9F00A22F7D /* Supporting Files */,
+				D1A288451C76B31600A22F7D /* PrefixHeader.pch */,
+				D1A2887C1C76C11100A22F7D /* PreConfig.h */,
 			);
 			path = JianZhi;
 			sourceTree = "<group>";
@@ -138,6 +169,141 @@
 				D1A288191C76AFA000A22F7D /* Info.plist */,
 			);
 			path = JianZhiUITests;
+			sourceTree = "<group>";
+		};
+		D1A288491C76B61700A22F7D /* 个人中心 */ = {
+			isa = PBXGroup;
+			children = (
+				D1A288611C76BCA100A22F7D /* Controller */,
+				D1A288621C76BCA100A22F7D /* Model */,
+				D1A288631C76BCA100A22F7D /* View */,
+			);
+			path = "个人中心";
+			sourceTree = "<group>";
+		};
+		D1A2884A1C76B61700A22F7D /* 群 */ = {
+			isa = PBXGroup;
+			children = (
+				D1A288641C76BCAB00A22F7D /* Controller */,
+				D1A288651C76BCAB00A22F7D /* Model */,
+				D1A288661C76BCAB00A22F7D /* View */,
+			);
+			path = "群";
+			sourceTree = "<group>";
+		};
+		D1A2884B1C76B61700A22F7D /* 首页 */ = {
+			isa = PBXGroup;
+			children = (
+				D1A288671C76BCC300A22F7D /* Controller */,
+				D1A288681C76BCC300A22F7D /* Model */,
+				D1A288691C76BCC300A22F7D /* View */,
+			);
+			path = "首页";
+			sourceTree = "<group>";
+		};
+		D1A2884C1C76B61700A22F7D /* 我的报名 */ = {
+			isa = PBXGroup;
+			children = (
+				D1A2886A1C76BCCE00A22F7D /* Controller */,
+				D1A2886B1C76BCCE00A22F7D /* Model */,
+				D1A2886C1C76BCCE00A22F7D /* View */,
+			);
+			path = "我的报名";
+			sourceTree = "<group>";
+		};
+		D1A288611C76BCA100A22F7D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D1A2885C1C76B68F00A22F7D /* MKMineViewController.h */,
+				D1A2885D1C76B68F00A22F7D /* MKMineViewController.m */,
+				D1A2885E1C76B68F00A22F7D /* MKMineViewController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D1A288621C76BCA100A22F7D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D1A288631C76BCA100A22F7D /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D1A288641C76BCAB00A22F7D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D1A288521C76B66D00A22F7D /* MKGroupViewController.h */,
+				D1A288531C76B66D00A22F7D /* MKGroupViewController.m */,
+				D1A288541C76B66D00A22F7D /* MKGroupViewController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D1A288651C76BCAB00A22F7D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D1A288661C76BCAB00A22F7D /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D1A288671C76BCC300A22F7D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D1A2884D1C76B65400A22F7D /* MKHomePageViewController.h */,
+				D1A2884E1C76B65400A22F7D /* MKHomePageViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D1A288681C76BCC300A22F7D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D1A288691C76BCC300A22F7D /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D1A2886A1C76BCCE00A22F7D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D1A288571C76B68500A22F7D /* MKMyJobViewController.h */,
+				D1A288581C76B68500A22F7D /* MKMyJobViewController.m */,
+				D1A288591C76B68500A22F7D /* MKMyJobViewController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D1A2886B1C76BCCE00A22F7D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D1A2886C1C76BCCE00A22F7D /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,6 +368,7 @@
 		D1A287E71C76AF9F00A22F7D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = MK;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = Monky;
 				TargetAttributes = {
@@ -244,7 +411,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1A288021C76AF9F00A22F7D /* LaunchScreen.storyboard in Resources */,
+				D1A288601C76B68F00A22F7D /* MKMineViewController.xib in Resources */,
 				D1A287FF1C76AF9F00A22F7D /* Assets.xcassets in Resources */,
+				D1A288561C76B66D00A22F7D /* MKGroupViewController.xib in Resources */,
+				D1A2885B1C76B68500A22F7D /* MKMyJobViewController.xib in Resources */,
 				D1A287FD1C76AF9F00A22F7D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -270,6 +440,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1A2885A1C76B68500A22F7D /* MKMyJobViewController.m in Sources */,
+				D1A2885F1C76B68F00A22F7D /* MKMineViewController.m in Sources */,
+				D1A288551C76B66D00A22F7D /* MKGroupViewController.m in Sources */,
+				D1A288481C76B47400A22F7D /* MKViewController.m in Sources */,
+				D1A288501C76B65400A22F7D /* MKHomePageViewController.m in Sources */,
 				D1A287FA1C76AF9F00A22F7D /* ViewController.m in Sources */,
 				D1A287F71C76AF9F00A22F7D /* AppDelegate.m in Sources */,
 				D1A287F41C76AF9F00A22F7D /* main.m in Sources */,
@@ -410,7 +585,9 @@
 		D1A2881D1C76AFA000A22F7D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				ENABLE_BITCODE = NO;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/JianZhi/PrefixHeader.pch";
 				INFOPLIST_FILE = JianZhi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = XueXi.Monky.com.JianZhi;
@@ -421,7 +598,9 @@
 		D1A2881E1C76AFA000A22F7D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				ENABLE_BITCODE = NO;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/JianZhi/PrefixHeader.pch";
 				INFOPLIST_FILE = JianZhi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = XueXi.Monky.com.JianZhi;

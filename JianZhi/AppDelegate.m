@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "MKViewController.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +17,18 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+
+    
+    //1.创建Window
+    self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    //2.添加代码
+    MKViewController *MKVC = [[MKViewController alloc]init];
+    self.window.rootViewController = MKVC;
+    //3.将window显示出来
+    [self.window makeKeyAndVisible];
+
+    
+    
     return YES;
 }
 
