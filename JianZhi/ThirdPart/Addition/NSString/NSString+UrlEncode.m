@@ -16,7 +16,7 @@
  *  @return urlEncode 后的字符串
  */
 - (NSString *)urlEncode {
-    return [self urlEncodeUsingEncoding:NSUTF8StringEncoding];
+    return [self urlEncodeUsingEncoding:kCFStringEncodingUTF8];
 }
 /**
  *  @brief  urlEncode

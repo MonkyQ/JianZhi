@@ -48,4 +48,9 @@ static MKbackView *_shareBackView = nil;
     }];
     
 }
+
++ (void)hideView
+{
+    [[self shareBackView]tapBackView];
+}
 @end

@@ -13,4 +13,6 @@
 + (id)shareBackView;
 
 - (void)popView:(UIView *)view;
+
++ (void)hideView;
 @end

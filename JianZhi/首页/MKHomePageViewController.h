@@ -10,4 +10,18 @@
 
 @interface MKHomePageViewController : UIViewController
 
+/**
+ *  兼职活动类型
+ */
+@property (strong, nonatomic) NSString *channelType;
+
+/**
+ *  地区
+ */
+@property (strong, nonatomic) NSString *city;
+
+/**
+ *  筛选时间
+ */
+@property (strong, nonatomic) NSString *filtrateTime;
 @end
