@@ -23,8 +23,6 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self configSubViews];
-        //		self.sep
-        
     }
     return self;
 }
@@ -67,7 +65,7 @@
     [self.MKTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.leftLabel.mas_right).offset(8);
         make.top.equalTo(8);
-        make.right.lessThanOrEqualTo(self.MKTitleLabel.mas_left).offset(-6);
+        make.right.lessThanOrEqualTo(self.MKSalaryLabel.mas_left).offset(-6);
     }];
     [self.MKTitleLabel sizeToFit];
     self.MKTitleLabel.textAlignment = NSTextAlignmentCenter;
@@ -81,7 +79,7 @@
     
     [self.MKSubTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.leftLabel.mas_right).offset(8);
-        make.top.equalTo(self.MKSubTitleLabel.mas_bottom).offset(6);
+        make.top.equalTo(self.MKTitleLabel.mas_bottom).offset(6);
     }];
     [self.MKSubTitleLabel sizeToFit];
     self.MKSubTitleLabel.textAlignment = NSTextAlignmentCenter;
@@ -90,7 +88,7 @@
 }
 
 - (void)configWithModel:(MKHomeCellModel *)model {
-    self.MKTitleLabel.text = [NSString stringWithFormat:@"%@%@%@", model.title, model.title, model.title];
+    self.MKTitleLabel.text = [NSString stringWithFormat:@"%@",model.title];
     self.MKSubTitleLabel.text = model.district;
     self.leftLabel.text = @"展会";
     self.MKSalaryLabel.text = model.showprice;

@@ -16,6 +16,8 @@
 #import "YYModel.h"
 #import "MKHomeCell.h"
 #import "MKHomeCellModel.h"
+#import "MKADCell.h"
+#import "MKADCellModel.h"
 
 @interface MKHomePageViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -24,6 +26,7 @@
 
 @property (nonatomic,strong)UITableView *tableView;
 @property (nonatomic,strong)NSMutableArray *cellModels;
+@property (nonatomic,strong)NSArray *adModel;
 
 /**
  *  用户进行筛选操作时选择的数据
@@ -53,9 +56,26 @@
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.cellModels =[[NSMutableArray alloc]init];
         [self configSiftCondition];
+        
+        NSArray *adInfos = @[
+                            @{
+                                @"imageUrl":@"1.jpg",
+                                @"action":@"www.baidu.com"
+                                },
+                            @{
+                                @"imageUrl":@"2.jpg",
+                                @"action":@"www.baidu.com"
+                                },
+                            @{
+                                @"imageUrl":@"3.jpg",
+                                @"action":@"www.baidu.com"
+                                }
+                            ];
+        self.adModel = [NSArray yy_modelArrayWithClass:[MKADCellModel class] json:adInfos];
+        
     }
     return self;
-    
+
 }
 - (void)configSiftCondition{
     self.channelType = @"0";
@@ -90,6 +110,9 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     [self getCellData];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getCellData) name:UIApplicationDidBecomeActiveNotification object:nil];
 }
 
 - (void)configureTableView
@@ -113,11 +136,11 @@
     
     self.tableView.rowHeight = 60;
     [self.tableView registerClass:[MKHomeCell class] forCellReuseIdentifier:@"MKHomeCell"];
+    [self.tableView registerClass:[MKADCell class] forCellReuseIdentifier:@"MKADCell"];
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
-    
     /**
      *  去掉 Cell 分隔线左边的空白
      */
@@ -127,6 +150,7 @@
     if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
         [self.tableView setLayoutMargins:UIEdgeInsetsZero];
     }
+
     // 修改 cell 的分割线颜色
     self.tableView.separatorColor = WArcColor;
 }
@@ -158,7 +182,7 @@
 - (void)userLogin
 {
     MKLoginView *loginView = [MKLoginView MKLoginView];
-    [[MKbackView shareBackView]popView:loginView];
+    [MKbackView exchangeTopViewWith:loginView isTouchHide:YES];
 }
 // 1 2 3 4 5 6 一秒执行一次
 
@@ -186,14 +210,12 @@
             NSDictionary *modelInfos = [NSJSONSerialization JSONObjectWithData:result options:NSJSONReadingMutableContainers error:nil];
             
             [self.cellModels removeAllObjects];
-            [self.cellModels addObjectsFromArray:[NSArray yy_modelArrayWithClass:[MKHomeCell class] json:modelInfos[@"json_data"]]];
+            [self.cellModels addObjectsFromArray:[NSArray yy_modelArrayWithClass:[MKHomeCellModel class] json:modelInfos[@"json_data"]]];
             [self.tableView.mj_header endRefreshing];
-            [self.tableView reloadData];
+            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
         }else {
             
         }
-        
-        //		[self.tableView reloadData];
     }];
 }
 
@@ -201,19 +223,41 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MKCommentCell *cell = nil;
-    cell = [tableView dequeueReusableCellWithIdentifier:@"MKHomeCell" forIndexPath:indexPath];
-    
-    MKHomeCellModel *model = [self.cellModels objectAtIndex:indexPath.row];
-    
-    
+    id model = nil;
+    if (indexPath.section ==0) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"MKADCell" forIndexPath:indexPath];
+        
+        model = self.adModel;
+    }else
+    {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"MKHomeCell" forIndexPath:indexPath];
+        
+      model = [self.cellModels objectAtIndex:indexPath.row];
+    }
     [cell configWithModel:model];
     return cell;
 
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section ==0) {
+        return 120;
+    }else{
+        return 60;
+    }
+}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 2;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.cellModels.count;
+    if (section ==0) {
+        return 1;
+    }else{
+        return self.cellModels.count;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

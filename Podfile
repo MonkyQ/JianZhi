@@ -4,5 +4,6 @@ pod "Masonry"
 pod "AFNetworking", "~> 2.0"
 pod "ReactiveCocoa"
 pod "FrameAccessor"
-pod "SDWebImage"
 pod "YYModel"
+pod "SDWebImage"
+

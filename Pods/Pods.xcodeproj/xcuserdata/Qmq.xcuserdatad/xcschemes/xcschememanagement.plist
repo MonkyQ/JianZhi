@@ -29,6 +29,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SDWebImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>YYModel.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,7 +47,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2E97BB98236E66924A998706B0352927</key>
+		<key>3866B88DA0EBC5780C76F74A69E0F98F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3E5A101CAFAAE9AAC6461E6A848377D8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -57,12 +67,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B0807ACD2C6077E9657E925EADDDC493</key>
+		<key>9C5F3C617F97F048626FDB77C3F5201B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C047F8A1158F90CFE6AD6A2FEB12DF4D</key>
+		<key>FD663B192294E086B56ABB1E63012B93</key>
 		<dict>
 			<key>primary</key>
 			<true/>

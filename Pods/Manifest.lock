@@ -29,6 +29,9 @@ PODS:
   - ReactiveCocoa/no-arc (2.5)
   - ReactiveCocoa/UI (2.5):
     - ReactiveCocoa/Core
+  - SDWebImage (3.7.5):
+    - SDWebImage/Core (= 3.7.5)
+  - SDWebImage/Core (3.7.5)
   - YYModel (0.9.12)
 
 DEPENDENCIES:
@@ -36,6 +39,7 @@ DEPENDENCIES:
   - FrameAccessor
   - Masonry
   - ReactiveCocoa
+  - SDWebImage
   - YYModel
 
 SPEC CHECKSUMS:
@@ -43,6 +47,7 @@ SPEC CHECKSUMS:
   FrameAccessor: 443a13e58e23a10ff22180da0897b28c3f6abf66
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
+  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   YYModel: 33a27f41a995f4c36ff8178421bac9f221a9c7ea
 
 COCOAPODS: 0.39.0

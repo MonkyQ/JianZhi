@@ -103,7 +103,7 @@
     }];
     //注册按钮
     UIButton *registerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [registerBtn setTitle:@"注册" forState:UIControlStateNormal];
+    [registerBtn setTitle:@"提交修改" forState:UIControlStateNormal];
     [registerBtn setBackgroundImage:[UIImage imageWithColor:WColorDarkGray] forState:UIControlStateDisabled];
     [registerBtn setBackgroundImage:[UIImage imageWithColor:WColorMain] forState:UIControlStateNormal];
     [registerBtn setBackgroundImage:[UIImage imageWithColor:WColorLightGray] forState:UIControlStateHighlighted];
@@ -112,7 +112,7 @@
     registerBtn.clipsToBounds = YES;
     [self.view addSubview:registerBtn];
     [registerBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(numberText.bottom).offset(126);
+        make.top.mas_equalTo(238);
         make.height.mas_equalTo(48);
         make.left.mas_equalTo(16);
         make.right.mas_equalTo(-16);
