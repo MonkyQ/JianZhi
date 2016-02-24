@@ -22,6 +22,7 @@ PODS:
     - AFNetworking/NSURLSession
   - FrameAccessor (2.0)
   - Masonry (0.6.4)
+  - QR-Code-Encoder-for-Objective-C (1.0.0)
   - ReactiveCocoa (2.5):
     - ReactiveCocoa/UI (= 2.5)
   - ReactiveCocoa/Core (2.5):
@@ -38,6 +39,7 @@ DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - FrameAccessor
   - Masonry
+  - QR-Code-Encoder-for-Objective-C
   - ReactiveCocoa
   - SDWebImage
   - YYModel
@@ -46,6 +48,7 @@ SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   FrameAccessor: 443a13e58e23a10ff22180da0897b28c3f6abf66
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
+  QR-Code-Encoder-for-Objective-C: 031dda11bf457a73dd5dea9165d934d628bcaf2d
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   YYModel: 33a27f41a995f4c36ff8178421bac9f221a9c7ea

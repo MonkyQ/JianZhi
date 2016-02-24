@@ -33,73 +33,11 @@ static MKNetHelp *_shareManager = nil;
         _shareManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", @"text/xml", @"text/plain", nil];
 
     });
+    //当手机处于无网络状态时 必须给出提示 不然会被拒绝
+    [self isReachToWeb];
     return  _shareManager;
 
 }
-
-//封装 Get请求 成功与失败分开
-+ (void)getDataWithParam:(NSDictionary *)params andPath:(NSString *)path andSuccess:(void(^)(id responseObject))sucess failure:(void(^)(id result))failure
-{
-    [[self shareManager]GET:path parameters:params success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-        
-    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
-        
-    }];
-    
-}
-//封装 Post请求 成功与失败分开
-+ (void)postDataWithParam:(NSDictionary *)params andPath:(NSString *)path andSuccess:(void(^)(id responseObject))sucess failure:(void(^)(id result))failure
-{
-    [[self shareManager]POST:path parameters:path success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-        
-        NSString *result = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
-        if ([result isEqualToString:@"0"]) {
-            result =@"登录失败";
-        }else
-        {
-            result = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-        }
-        NSLog(@"%@",result);
-    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
-        id result = error.localizedDescription;
-        NSLog( @"%@",result);
-    }];
-}
-
-
-// 封装 Get 请求，成功和失败分开处理
-+ (void)getDataWithParam:(NSDictionary *)params andPath:(NSString *)path andComplete:(void (^)(BOOL success, id result))complete {
-    [[self shareManager] GET:path parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        complete(YES, responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        // 网络请求失败，返回失败原因
-        complete(NO, error.localizedDescription);
-    }];
-}
-/*
-// 封装 Get 请求，成功和失败在一个 block 里面处理
-+ (void)postWithParam:(NSDictionary *)params andPath:(NSString *)path andComplete:(void (^)(BOOL success, id result))complete {
-    [[self shareManager] POST:path parameters:params success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-        BOOL success = YES;
-        id result;
-        
-        NSString *resultStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        if ([resultStr isEqualToString:@"0"]) {
-            success = NO;
-            result = @"登录失败，请重试";
-        }else {
-            result = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-        }
-        complete(success, result);
-        
-    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
-        BOOL success = NO;
-        id result = error.localizedDescription;
-        complete(success, result);
-        
-    }];
-}
-*/
 // 封装 Post 请求，成功和失败在一个 block 里面处理
 + (void)postWithParam:(NSDictionary *)params andPath:(NSString *)path andComplete:(void (^)(BOOL success, id result))complete {
     [[self shareManager] POST:path parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -112,4 +50,42 @@ static MKNetHelp *_shareManager = nil;
     }];
 }
 
+// 封装 Get 请求，成功和失败分开处理
++ (void)getDataWithParam:(NSDictionary *)params andPath:(NSString *)path andComplete:(void (^)(BOOL success, id result))complete {
+    [[self shareManager] GET:path parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        complete(YES, responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        // 网络请求失败，返回失败原因
+        complete(NO, error.localizedDescription);
+    }];
+}
+
+
++ (void)isReachToWeb
+{
+    [[AFNetworkReachabilityManager sharedManager]setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        switch (status) {
+            case AFNetworkReachabilityStatusUnknown:{
+                
+            }
+                break;
+            case AFNetworkReachabilityStatusNotReachable:{
+                WLog(@"无网络");
+            }
+                break;
+            case AFNetworkReachabilityStatusReachableViaWWAN:{
+                
+            }
+                break;
+            case AFNetworkReachabilityStatusReachableViaWiFi:{
+                
+            }
+                break;
+                
+            default:
+                break;
+        }
+        
+    }];
+}
 @end

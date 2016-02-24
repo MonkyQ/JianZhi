@@ -135,6 +135,8 @@
 		D1A2885F1C76B68F00A22F7D /* MKMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1A2885D1C76B68F00A22F7D /* MKMineViewController.m */; };
 		D1A288601C76B68F00A22F7D /* MKMineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1A2885E1C76B68F00A22F7D /* MKMineViewController.xib */; };
 		D1A2897F1C76F43C00A22F7D /* MKbackView.m in Sources */ = {isa = PBXBuildFile; fileRef = D1A2897E1C76F43C00A22F7D /* MKbackView.m */; };
+		D1C557DF1C7BF23400FBE385 /* MKScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1C557DE1C7BF23400FBE385 /* MKScanViewController.m */; };
+		D1C557E21C7C347800FBE385 /* MKMyQRCodeViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = D1C557E11C7C347800FBE385 /* MKMyQRCodeViewController.mm */; };
 		DA3BACAE61F8231B4928B780 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CEEA88A2C4471D80475443E /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -400,6 +402,10 @@
 		D1A2887C1C76C11100A22F7D /* PreConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreConfig.h; sourceTree = "<group>"; };
 		D1A2897D1C76F43C00A22F7D /* MKbackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKbackView.h; sourceTree = "<group>"; };
 		D1A2897E1C76F43C00A22F7D /* MKbackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKbackView.m; sourceTree = "<group>"; };
+		D1C557DD1C7BF23400FBE385 /* MKScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MKScanViewController.h; path = ../../MKScanViewController.h; sourceTree = "<group>"; };
+		D1C557DE1C7BF23400FBE385 /* MKScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MKScanViewController.m; path = ../../MKScanViewController.m; sourceTree = "<group>"; };
+		D1C557E01C7C347800FBE385 /* MKMyQRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MKMyQRCodeViewController.h; path = ../MKMyQRCodeViewController.h; sourceTree = "<group>"; };
+		D1C557E11C7C347800FBE385 /* MKMyQRCodeViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MKMyQRCodeViewController.mm; path = ../MKMyQRCodeViewController.mm; sourceTree = "<group>"; };
 		EE93CB09F1DCC9296E893A3E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1158,6 +1164,10 @@
 				D1A2885C1C76B68F00A22F7D /* MKMineViewController.h */,
 				D1A2885D1C76B68F00A22F7D /* MKMineViewController.m */,
 				D1A2885E1C76B68F00A22F7D /* MKMineViewController.xib */,
+				D1C557DD1C7BF23400FBE385 /* MKScanViewController.h */,
+				D1C557DE1C7BF23400FBE385 /* MKScanViewController.m */,
+				D1C557E01C7C347800FBE385 /* MKMyQRCodeViewController.h */,
+				D1C557E11C7C347800FBE385 /* MKMyQRCodeViewController.mm */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1343,6 +1353,7 @@
 				TargetAttributes = {
 					D1A287EE1C76AF9F00A22F7D = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = D8T53M5XGA;
 					};
 					D1A288071C76AFA000A22F7D = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -1476,6 +1487,7 @@
 				D1A2885A1C76B68500A22F7D /* MKMyJobViewController.m in Sources */,
 				D134E3351C7AD86900EA4997 /* UIScrollView+MJExtension.m in Sources */,
 				D10CCBDF1C77F5FD00917F03 /* UINavigationItem+Margin.m in Sources */,
+				D1C557E21C7C347800FBE385 /* MKMyQRCodeViewController.mm in Sources */,
 				D10CCBC91C77F5FD00917F03 /* UIButton+TouchAreaInsets.m in Sources */,
 				D134E32E1C7AD86900EA4997 /* MJRefreshBackNormalFooter.m in Sources */,
 				D18DAE461C7AE270004A04E9 /* MKADCellModel.m in Sources */,
@@ -1507,6 +1519,7 @@
 				D10CCBF01C77F5FD00917F03 /* NSString+WPAttributedMarkup.m in Sources */,
 				D10CCBB21C77F5FD00917F03 /* NSDictionary+JSONString.m in Sources */,
 				D10CCBB91C77F5FD00917F03 /* NSObject+KVOBlocks.m in Sources */,
+				D1C557DF1C7BF23400FBE385 /* MKScanViewController.m in Sources */,
 				D10CCBD01C77F5FD00917F03 /* UIImage+FileName.m in Sources */,
 				D10CCBB71C77F5FD00917F03 /* NSObject+AutoCoding.m in Sources */,
 				D1A288501C76B65400A22F7D /* MKHomePageViewController.m in Sources */,
@@ -1716,12 +1729,15 @@
 			baseConfigurationReference = 81804CC600ADF4FD69FA073F /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/JianZhi/PrefixHeader.pch";
 				INFOPLIST_FILE = JianZhi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = XueXi.Monky.com.JianZhi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/**";
 			};
 			name = Debug;
@@ -1731,12 +1747,15 @@
 			baseConfigurationReference = EE93CB09F1DCC9296E893A3E /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/JianZhi/PrefixHeader.pch";
 				INFOPLIST_FILE = JianZhi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = XueXi.Monky.com.JianZhi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/**";
 			};
 			name = Release;

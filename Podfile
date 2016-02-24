@@ -6,4 +6,4 @@ pod "ReactiveCocoa"
 pod "FrameAccessor"
 pod "YYModel"
 pod "SDWebImage"
-
+pod "QR-Code-Encoder-for-Objective-C"

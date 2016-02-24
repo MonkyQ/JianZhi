@@ -24,6 +24,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>QR-Code-Encoder-for-Objective-C.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>ReactiveCocoa.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,17 +47,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>097D11025C5957F97A56F23409A4C817</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>0F7B1940DE10624DFABB6A65D0BE9B4A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3866B88DA0EBC5780C76F74A69E0F98F</key>
+		<key>17905771D76ACC5406F7D2030F557C07</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3E5A101CAFAAE9AAC6461E6A848377D8</key>
+		<key>3C632DA3EA9636FDE1820656FC212AF0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -67,12 +77,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9C5F3C617F97F048626FDB77C3F5201B</key>
+		<key>7FF0C472C7618D8AF67574D40575739A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FD663B192294E086B56ABB1E63012B93</key>
+		<key>9AC2088FD5E1DB3DA72CBFA356C07E10</key>
 		<dict>
 			<key>primary</key>
 			<true/>
