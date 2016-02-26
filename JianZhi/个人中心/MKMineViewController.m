@@ -13,7 +13,7 @@
 #import "MKScanViewController.h"
 
 
-@interface MKMineViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface MKMineViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 
 @property (nonatomic,strong)UITableView *tableView;//xib用的是weak 因为默认有这个子控件
 
@@ -83,7 +83,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"forIndexPath:indexPath];
-    cell.textLabel.text = @"扫码上岗";
+    if (indexPath.section ==2) {
+        
+    }else
+    {
+        cell.textLabel.text = @"扫码上岗";
+    }
+    
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -96,6 +102,10 @@
         UINavigationController *naviVC = [[UINavigationController alloc] initWithRootViewController:scanVC];
         // prensent 一个视图控制器，不用再隐藏他的导航条
         [self.navigationController presentViewController:naviVC animated:YES completion:nil];
+    }else if (indexPath.section ==2){
+        //有代理方法
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"提醒" message:@"您确定要退出当前账号吗" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"退出", nil];
+        	[alertView show];
     }
     
     
@@ -111,6 +121,11 @@
         return 16;
     }
 
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"MKLogOffSuccess" object:nil];
 }
 
 @end

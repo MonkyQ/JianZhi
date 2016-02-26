@@ -9,6 +9,10 @@
 #import "AppDelegate.h"
 #import "MKViewController.h"
 
+#import "JPUSHService.h"
+#import "MKViewController.h"
+#import "MKScanViewController.h"
+
 
 @interface AppDelegate ()
 
@@ -31,8 +35,103 @@
     
 //    [self cheackNewVersion];
 //    [self cheackNewVersionFromAppStore];
+    
+    // 配置极光推送环境和申请推送权限。
+    [self setUpJpush:launchOptions];
+    
+    // 注册一些通知，比如监控是否登录
+    [self rigistNotification];
+    
+    // 每次打开应用，先判断上次别名设置是否成功，如果没有设置成功，继续设置。
+    [self setAlias];
+
     return YES;
 }
+
+- (void)setUpJpush:(NSDictionary *)launchOptions
+{
+    [JPUSHService setupWithOption:launchOptions appKey:@"7a7480d43b98d2a36626c517" channel:@"appStore" apsForProduction:NO];
+    
+    //	if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
+    //		;
+    //	}
+    //	UIUserNotificationTypeBadge   = 1 << 0, // the application may badge its icon upon a notification being received
+    //	UIUserNotificationTypeSound   = 1 << 1, // the application may play a sound upon a notification being received
+    //	UIUserNotificationTypeAlert   = 1 << 2
+    
+    // 申请远程推送权限
+    [JPUSHService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert) categories:nil];
+}
+- (void)rigistNotification {
+    // 监控登录成功的通知
+    // 当用户登录的时候，需要给极光推送设置别名为用户名。
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(MKloginSuccess:) name:@"MKLoginSuccess" object:nil];
+    
+    // 当用户推出登录的时候，要将别名设置为空。
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(MKlogoffSuccess:) name:@"MKLogOffSuccess" object:nil];
+    
+}
+//登陆成功
+- (void)MKloginSuccess:(NSNotification *)noti {
+    
+    // 取出登录成功的用户手机号
+    NSString *userID = noti.object;
+    
+    [self setAlias:userID];
+    // 将此手机号设置为极光推送的别名
+}
+//设置别名
+- (void)setAlias:(NSString *)alias {
+    //	[JPUSHService setAlias:userID callbackSelector:@selector() object:<#(id)#>]
+    [JPUSHService setTags:nil alias:alias fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias) {
+        // iResCode 为0 表示设置成功，6002 表示超时
+        // 当设置别名失败的时候，重新调用此方法，继续设置，直到设置成功。
+        if (iResCode != 0) {
+            NSDictionary *aliasInfo = @{
+                                        @"success": @"NO",
+                                        @"alias": alias,
+                                        };
+            
+            [[NSUserDefaults standardUserDefaults] setObject:aliasInfo forKey:@"alias"];
+            
+            [self setAlias:alias];
+        }else {
+            
+            NSDictionary *aliasInfo = @{
+                                        @"success": @"YES",
+                                        @"alias": alias,
+                                        };
+            
+            [[NSUserDefaults standardUserDefaults] setObject:aliasInfo forKey:@"alias"];
+        }
+        
+        WLog(@"%d, %@, %@", iResCode, iTags, iAlias);
+        
+    }];
+}
+//每次进入应用是判断别名是否设置成功
+- (void)setAlias {
+    
+    // 取出存放的别名设置
+    NSDictionary *aliasInfo = [[NSUserDefaults standardUserDefaults] objectForKey:@"alias"];
+    
+    NSString *res = [aliasInfo objectForKey:@"success"];
+    // 判断上次是否设置成功，如果不成功，就继续设置别名。
+    if ([res isEqualToString:@"NO"]) {
+        [self setAlias:[aliasInfo objectForKey:@"alias"]];
+    }
+}
+//退出登陆
+- (void)MKlogoffSuccess:(NSNotification *)noti  {
+    // 设置 alias 为空字符串 @"" 时，代表取消这个手机以前设置的别名
+    [JPUSHService setTags:nil alias:@"" fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias) {
+        // iResCode 为0 表示设置成功，6002 表示超时
+        WLog(@"%d, %@, %@", iResCode, iTags, iAlias);
+        
+    }];
+}
+
+
 #define LAST_RUN_VERSION_KEY        @"last_run_version_of_application"
 // 本地应用监测是否安装了更新的版本。
 // 判断打开应用时候，是否播放欢迎动画。
@@ -100,5 +199,91 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+//先申请权限才会有
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    // 把 deviceToken 上传到极光，通过这个可以给指定的手机发送推送消息
+    [JPUSHService registerDeviceToken:deviceToken];
+
+}
+
+// 申请远程推送权限失败调用。
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    WLog(@"error:%@", error);
+}
+
+// 写处理推送消息的方法
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    //iOS6 之前用这个方法吃力远程推送
+    WLog(@"%@", userInfo);
+    
+    [JPUSHService handleRemoteNotification:userInfo];
+}
+
+
+// 假如现在有需求
+// 给所有在上海的手机推送消息
+// 现在 18513017173 这个账号购买了一个东西，已经送到，需要推送一条消息，告诉用户。
+
+// 极光推送的几种推送方式
+// 1> 群推，手动给所有安装了软件的用户推送（推广告）
+// 2> 通过 tag （标签）推送，上海就是一个标签,要这样推送，首先要给所有在上海的手机用户打上标签
+// 一个手机可以有多个标签，既可以打上上海的标签，也可以用 男女作为标签，
+// 3> 通过 alias (别名) 推送，18513017173(手机号)可以作为一个用户的别名。
+// 一个手机只有一个别名，设置新的别名，会把原来设置过的覆盖。
+
+// 当应用在前台时候，收到远程推送，会调用这个方法。
+
+// 当应用点击通知栏推送消息时，会先进入这个方法。
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+    //iOS6以后的处理
+    // 都需要先把推送消息用 极光推送处理。
+    [JPUSHService handleRemoteNotification:userInfo];
+    // 清空通知栏通知，清除应用 icon 上面的角标
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    
+    // 可以通过自定义 sound 参数，播放不同的声音
+    // 声音文件必须是 caf 格式的。
+    
+    
+    WLog(@"%@", userInfo);
+    // 取出推送消息
+    NSDictionary *apsInfo = userInfo[@"aps"];
+    
+    // 取出通知类型
+    NSString *notiType = userInfo[@"noti_type"];
+    // 取出推送的内容
+    NSString *message = apsInfo[@"alert"];
+    
+    if ([notiType isEqualToString:@"alert"]) {
+        //      这个枚举类型代表当前应用所处的状态，是在激活状态（前台），还是后台。
+        //		UIApplicationStateActive,
+        //		UIApplicationStateInactive,
+        //		UIApplicationStateBackground
+        // 当应用在前台接到推送消息时，弹出警示框
+        if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive) {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"警告" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            [alertView show];
+            
+        }
+        // 当应用点击通知栏进入的时候，跳转到相应的 viewController;
+        // 根据应用不同的状态和通知的不同类型，做不同的处理。
+        else {
+            MKViewController *tabVC = (MKViewController *)[self window].rootViewController;
+            UINavigationController *currentNaviVC = [tabVC selectedViewController];
+            
+            MKScanViewController *scanVC = [[MKScanViewController alloc] init];
+            
+            [currentNaviVC pushViewController:scanVC animated:YES];
+            
+        }
+    }
+    
+    completionHandler(UIBackgroundFetchResultNewData);
+}
+
 
 @end

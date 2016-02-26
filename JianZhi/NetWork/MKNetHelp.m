@@ -87,5 +87,7 @@ static MKNetHelp *_shareManager = nil;
         }
         
     }];
+    //开启监听
+    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
 }
 @end

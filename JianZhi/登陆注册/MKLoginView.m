@@ -118,6 +118,9 @@
         if (success) {
             WLog(@"登录成功, %@", result);
             [MKbackView hideView];
+            
+            //在登录成功的时候发送一个通知,告诉所有的观察者登陆成功 并且附上用户名
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"MKLoginSuccess" object:self.nameText.text];
         }else
         {
             WLog(@"登录失败, %@", result);
