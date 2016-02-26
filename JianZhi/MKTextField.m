@@ -17,6 +17,9 @@
     if (self = [super initWithFrame:frame]) {
         _leftPedding = WPedding;
         self.returnKeyType = UIReturnKeyDone;
+        self.layer.borderColor = WColorLightGray.CGColor;
+        self.layer.borderWidth = 1.0f;
+        self.font = [UIFont systemFontOfSize:13];
     }
     return self;
 }

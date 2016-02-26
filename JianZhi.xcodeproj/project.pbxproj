@@ -143,8 +143,8 @@
 		D1A2885A1C76B68500A22F7D /* MKMyJobViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1A288581C76B68500A22F7D /* MKMyJobViewController.m */; };
 		D1A2885B1C76B68500A22F7D /* MKMyJobViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1A288591C76B68500A22F7D /* MKMyJobViewController.xib */; };
 		D1A2885F1C76B68F00A22F7D /* MKMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1A2885D1C76B68F00A22F7D /* MKMineViewController.m */; };
-		D1A288601C76B68F00A22F7D /* MKMineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1A2885E1C76B68F00A22F7D /* MKMineViewController.xib */; };
 		D1A2897F1C76F43C00A22F7D /* MKbackView.m in Sources */ = {isa = PBXBuildFile; fileRef = D1A2897E1C76F43C00A22F7D /* MKbackView.m */; };
+		D1B122E91C802BCA003270FB /* MKHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B122E71C802BCA003270FB /* MKHeaderTableViewCell.m */; };
 		D1C557DF1C7BF23400FBE385 /* MKScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1C557DE1C7BF23400FBE385 /* MKScanViewController.m */; };
 		D1C557E21C7C347800FBE385 /* MKMyQRCodeViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = D1C557E11C7C347800FBE385 /* MKMyQRCodeViewController.mm */; };
 		DA3BACAE61F8231B4928B780 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CEEA88A2C4471D80475443E /* libPods.a */; };
@@ -419,10 +419,11 @@
 		D1A288591C76B68500A22F7D /* MKMyJobViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MKMyJobViewController.xib; path = ../MKMyJobViewController.xib; sourceTree = "<group>"; };
 		D1A2885C1C76B68F00A22F7D /* MKMineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MKMineViewController.h; path = ../MKMineViewController.h; sourceTree = "<group>"; };
 		D1A2885D1C76B68F00A22F7D /* MKMineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MKMineViewController.m; path = ../MKMineViewController.m; sourceTree = "<group>"; };
-		D1A2885E1C76B68F00A22F7D /* MKMineViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MKMineViewController.xib; path = ../MKMineViewController.xib; sourceTree = "<group>"; };
 		D1A2887C1C76C11100A22F7D /* PreConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreConfig.h; sourceTree = "<group>"; };
 		D1A2897D1C76F43C00A22F7D /* MKbackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKbackView.h; sourceTree = "<group>"; };
 		D1A2897E1C76F43C00A22F7D /* MKbackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKbackView.m; sourceTree = "<group>"; };
+		D1B122E61C802BCA003270FB /* MKHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKHeaderTableViewCell.h; sourceTree = "<group>"; };
+		D1B122E71C802BCA003270FB /* MKHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKHeaderTableViewCell.m; sourceTree = "<group>"; };
 		D1C557DD1C7BF23400FBE385 /* MKScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MKScanViewController.h; path = ../../MKScanViewController.h; sourceTree = "<group>"; };
 		D1C557DE1C7BF23400FBE385 /* MKScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MKScanViewController.m; path = ../../MKScanViewController.m; sourceTree = "<group>"; };
 		D1C557E01C7C347800FBE385 /* MKMyQRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MKMyQRCodeViewController.h; path = ../MKMyQRCodeViewController.h; sourceTree = "<group>"; };
@@ -1061,7 +1062,6 @@
 			children = (
 				D1A2885C1C76B68F00A22F7D /* MKMineViewController.h */,
 				D1A2885D1C76B68F00A22F7D /* MKMineViewController.m */,
-				D1A2885E1C76B68F00A22F7D /* MKMineViewController.xib */,
 				D1C557DD1C7BF23400FBE385 /* MKScanViewController.h */,
 				D1C557DE1C7BF23400FBE385 /* MKScanViewController.m */,
 				D1C557E01C7C347800FBE385 /* MKMyQRCodeViewController.h */,
@@ -1080,6 +1080,8 @@
 		D1A288631C76BCA100A22F7D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D1B122E61C802BCA003270FB /* MKHeaderTableViewCell.h */,
+				D1B122E71C802BCA003270FB /* MKHeaderTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1294,7 +1296,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1A288021C76AF9F00A22F7D /* LaunchScreen.storyboard in Resources */,
-				D1A288601C76B68F00A22F7D /* MKMineViewController.xib in Resources */,
 				D134E3241C7AD86900EA4997 /* LICENSE in Resources */,
 				D18DAE561C7AE7F0004A04E9 /* 10.jpg in Resources */,
 				D18DAE581C7AE7F0004A04E9 /* 3.jpg in Resources */,
@@ -1386,6 +1387,7 @@
 			files = (
 				D134E3311C7AD86900EA4997 /* MJRefreshNormalHeader.m in Sources */,
 				D10CCBDD1C77F5FD00917F03 /* UINavigationItem+Loading.m in Sources */,
+				D1B122E91C802BCA003270FB /* MKHeaderTableViewCell.m in Sources */,
 				D134E3281C7AD86900EA4997 /* MJRefreshFooter.m in Sources */,
 				D1A2885A1C76B68500A22F7D /* MKMyJobViewController.m in Sources */,
 				D134E3351C7AD86900EA4997 /* UIScrollView+MJExtension.m in Sources */,

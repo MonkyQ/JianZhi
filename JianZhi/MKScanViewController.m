@@ -66,7 +66,7 @@ static NSInteger WScanWidth = 160;
     [self.view addSubview:self.resultLabel];
     self.resultLabel.backgroundColor = [UIColor colorWithRed:0.522 green:0.953 blue:0.460 alpha:0.408];
     [self.resultLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.equalTo(WPedding);
+        make.left.top.equalTo(WPedding+40);
         make.height.equalTo(48);
         make.centerX.equalTo(0);
     }];

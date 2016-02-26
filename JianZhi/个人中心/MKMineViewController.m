@@ -24,8 +24,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //隐藏导航栏
-    self.fd_prefersNavigationBarHidden = YES;
-    //self.navigationBarBackgroundHidden = YES;//导航没有标题还在
+   self.fd_prefersNavigationBarHidden = YES;
+    //self.navigationBarBackgroundHidden = YES;//导航没有 标题还在
     
     
     [self configTableView];
@@ -35,7 +35,7 @@
 {
     // 创建tableView,如果是手动创建，成员变量可以为 strong （强引用）
     self.tableView = [[UITableView alloc] initWithFrame:CGRectNull style:UITableViewStyleGrouped];
-    
+    //如果是YES 会自动空出导航条高度
     self.automaticallyAdjustsScrollViewInsets = NO;
     //	self.tableView.indicatorStyle
     //	self.tableView.separatorStyle
@@ -67,7 +67,7 @@
     NSInteger rowNumber = 0;
     switch (section) {
         case 0:
-            rowNumber = 2;
+            rowNumber = 1;
             break;
         case 1:
             rowNumber = 3;
@@ -83,8 +83,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"forIndexPath:indexPath];
-    if (indexPath.section ==2) {
-        
+    if (indexPath.section ==0)
+    {
+        cell.imageView.image = [UIImage imageNamed:@"PersonHead"];
+    }else if (indexPath.section ==2) {
+        cell.textLabel.text = @"退出登陆";
     }else
     {
         cell.textLabel.text = @"扫码上岗";
