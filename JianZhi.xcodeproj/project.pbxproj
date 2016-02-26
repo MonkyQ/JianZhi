@@ -1251,6 +1251,7 @@
 				TargetAttributes = {
 					D1A287EE1C76AF9F00A22F7D = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = W272WDFC9W;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
