@@ -22,8 +22,10 @@
 @property (nonatomic,strong)MKTextField *cheakText;
 @property (nonatomic,strong)MKTextField *passwordText;
 @property (nonatomic,strong)MKTextField *inviteText;
+//倒数数值
 @property (nonatomic,assign)NSNumber *waitNumber;
 @property (nonatomic,strong)UIButton *btn;
+//倒计时定时器
 @property (nonatomic,strong)NSTimer *waitTimer;
 
 @end
@@ -258,7 +260,7 @@
                 [self.waitTimer setFireDate:[NSDate date]];
             }
         }
-    }];    
+    }];
 }
 
 
