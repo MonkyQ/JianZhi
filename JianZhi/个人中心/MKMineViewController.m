@@ -11,9 +11,14 @@
 //#import "UINavigationController+JZExtension.h"
 #import "MJRefresh.h"
 #import "MKScanViewController.h"
+#import "MKMapViewController.h"
+
+#import "MKContactViewController.h"
+
+#import "MKShakeViewController.h"
 
 
-@interface MKMineViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
+@interface MKMineViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate,UIViewControllerPreviewingDelegate>
 
 @property (nonatomic,strong)UITableView *tableView;//xib用的是weak 因为默认有这个子控件
 
@@ -85,12 +90,27 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"forIndexPath:indexPath];
     if (indexPath.section ==0)
     {
-        cell.imageView.image = [UIImage imageNamed:@"PersonHead"];
-    }else if (indexPath.section ==2) {
-        cell.textLabel.text = @"退出登陆";
-    }else
-    {
+        cell.textLabel.text = @"摇一摇";
+        //要加3DTouch的手势需要先判断用户是否支持3DTouch
+        if (self.traitCollection.forceTouchCapability ==2) {
+            /**
+             *  第一个参数 代表代理  代表添加3D Touch手势的View
+             */
+            [self registerForPreviewingWithDelegate:self sourceView:cell];
+            
+        }else if (indexPath.section ==1&&indexPath.row==0)
+        {
+            cell.textLabel.text = @"联系客服";
+        }else if (indexPath.section ==1&&indexPath.row==2)
+        {
+            
+            cell.textLabel.text = @"地图定位";
+        }else if (indexPath.section ==2) {
+            cell.textLabel.text = @"退出登陆";
+        }
+        else{
         cell.textLabel.text = @"扫码上岗";
+                }
     }
     
     return cell;
@@ -105,10 +125,27 @@
         UINavigationController *naviVC = [[UINavigationController alloc] initWithRootViewController:scanVC];
         // prensent 一个视图控制器，不用再隐藏他的导航条
         [self.navigationController presentViewController:naviVC animated:YES completion:nil];
-    }else if (indexPath.section ==2){
+    }else if (indexPath.section ==1&&indexPath.row==0)
+    {
+        MKContactViewController *conVC =[[MKContactViewController alloc]init];
+        [self.navigationController pushViewController:conVC animated:YES];
+         conVC.hidesBottomBarWhenPushed = YES;
+    }
+    else if (indexPath.section ==1&&indexPath.row==2){
+        //跳转地图
+        MKMapViewController *mapVC = [[MKMapViewController alloc]init];
+        mapVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:mapVC animated:YES];
+    }
+
+    else if (indexPath.section ==2){
         //有代理方法
         UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"提醒" message:@"您确定要退出当前账号吗" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"退出", nil];
         	[alertView show];
+    }else if (indexPath.section ==0)
+    {
+        MKShakeViewController *shakeVC = [[MKShakeViewController alloc]init];
+        [self.navigationController pushViewController:shakeVC animated:YES];
     }
     
     
@@ -129,6 +166,22 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     [[NSNotificationCenter defaultCenter]postNotificationName:@"MKLogOffSuccess" object:nil];
+}
+
+//peek轻按出现预览界面 可以设置大小
+- (nullable UIViewController *)previewingContext:(id <UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location
+{
+    MKShakeViewController *shakeVC = [[MKShakeViewController alloc]init];
+    shakeVC.hidesBottomBarWhenPushed = YES;
+    
+    return shakeVC;
+    
+}
+//重按之后调用--push或者present新界面
+- (void)previewingContext:(id <UIViewControllerPreviewing>)previewingContext commitViewController:(UIViewController *)viewControllerToCommit
+{
+    [self.navigationController pushViewController:viewControllerToCommit animated:YES];
+    
 }
 
 @end

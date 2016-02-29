@@ -10,12 +10,16 @@
 #import "MKViewController.h"
 
 #import "JPUSHService.h"
+
 #import "MKViewController.h"
 #import "MKScanViewController.h"
 
-
+#import "BaiduMapAPI_Base.framework/Headers/BMKMapManager.h"
+#import "BaiduMapAPI_Map.framework/Headers/BMKMapView.h"
 @interface AppDelegate ()
-
+{
+      BMKMapManager* _mapManager;
+}
 @end
 
 @implementation AppDelegate
@@ -32,7 +36,7 @@
     //3.将window显示出来
     [self.window makeKeyAndVisible];
 
-    
+    //版本查询
 //    [self cheackNewVersion];
 //    [self cheackNewVersionFromAppStore];
     
@@ -44,9 +48,34 @@
     
     // 每次打开应用，先判断上次别名设置是否成功，如果没有设置成功，继续设置。
     [self setAlias];
+    
+    
+    
+    //配置百度地图
+    [self setupBaiduMap];
+    
+    
+    //配置快捷菜单有静态和动态之分
+    //静态配置通过修改Plist.info文件 设置快捷菜单
+    //还可以通过代码设置
+    //type是标识快捷菜单项的唯一字符串
+    UIApplicationShortcutItem *firstItem = [[UIApplicationShortcutItem alloc]initWithType:@"First" localizedTitle:@"第一个菜单" localizedSubtitle:@"这是子标题" icon:[UIApplicationShortcutIcon iconWithType:UIApplicationShortcutIconTypePlay] userInfo:nil];
+    UIApplicationShortcutItem *secondItem = [[UIApplicationShortcutItem alloc]initWithType:@"Second" localizedTitle:@"第二个菜单" localizedSubtitle:nil icon:[UIApplicationShortcutIcon iconWithType:UIApplicationShortcutIconTypeLove] userInfo:nil];
+    [[UIApplication sharedApplication]setShortcutItems:@[firstItem,secondItem]];
 
     return YES;
 }
+- (void)setupBaiduMap
+{
+    _mapManager = [[BMKMapManager alloc]init];
+    // 如果要关注网络及授权验证事件，请设定generalDelegate参数
+    BOOL ret = [_mapManager start:@"S3xF9q2InjWnv5rxWhRxGuD4"  generalDelegate:nil];
+    if (!ret) {
+        NSLog(@"manager start failed!");
+    }
+}
+
+
 
 - (void)setUpJpush:(NSDictionary *)launchOptions
 {
@@ -285,5 +314,19 @@
     completionHandler(UIBackgroundFetchResultNewData);
 }
 
-
+//点击快捷菜单会调用这个方法
+- (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler
+{
+    NSString *type = [shortcutItem type];
+    if ([type isEqualToString:@"First"]) {
+    
+    }else{
+    
+    }
+    
+    
+    
+    
+    
+}
 @end
