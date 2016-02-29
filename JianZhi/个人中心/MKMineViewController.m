@@ -98,7 +98,8 @@
              */
             [self registerForPreviewingWithDelegate:self sourceView:cell];
             
-        }else if (indexPath.section ==1&&indexPath.row==0)
+        }
+    }else if (indexPath.section ==1&&indexPath.row==0)
         {
             cell.textLabel.text = @"联系客服";
         }else if (indexPath.section ==1&&indexPath.row==2)
@@ -109,9 +110,8 @@
             cell.textLabel.text = @"退出登陆";
         }
         else{
-        cell.textLabel.text = @"扫码上岗";
-                }
-    }
+            cell.textLabel.text = @"扫码上岗";
+        }
     
     return cell;
 }
@@ -128,8 +128,9 @@
     }else if (indexPath.section ==1&&indexPath.row==0)
     {
         MKContactViewController *conVC =[[MKContactViewController alloc]init];
+        conVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:conVC animated:YES];
-         conVC.hidesBottomBarWhenPushed = YES;
+        
     }
     else if (indexPath.section ==1&&indexPath.row==2){
         //跳转地图

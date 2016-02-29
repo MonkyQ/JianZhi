@@ -16,7 +16,13 @@
 
 #import "BaiduMapAPI_Base.framework/Headers/BMKMapManager.h"
 #import "BaiduMapAPI_Map.framework/Headers/BMKMapView.h"
-@interface AppDelegate ()
+
+#import "WXApi.h"
+
+#import "OpenShare.h"
+#import "OpenShareHeader.h"
+
+@interface AppDelegate ()<WXApiDelegate>
 {
       BMKMapManager* _mapManager;
 }
@@ -62,9 +68,29 @@
     UIApplicationShortcutItem *firstItem = [[UIApplicationShortcutItem alloc]initWithType:@"First" localizedTitle:@"第一个菜单" localizedSubtitle:@"这是子标题" icon:[UIApplicationShortcutIcon iconWithType:UIApplicationShortcutIconTypePlay] userInfo:nil];
     UIApplicationShortcutItem *secondItem = [[UIApplicationShortcutItem alloc]initWithType:@"Second" localizedTitle:@"第二个菜单" localizedSubtitle:nil icon:[UIApplicationShortcutIcon iconWithType:UIApplicationShortcutIconTypeLove] userInfo:nil];
     [[UIApplication sharedApplication]setShortcutItems:@[firstItem,secondItem]];
+    
+    // 配置微信的 appkey, 也就是在工程配置里面添加的 scheme
+    [self setUpWeChat];
+    
+    
+    //配置OpenShare
+    [self setupOpenShare];
 
     return YES;
 }
+
+- (void)setupOpenShare
+{
+    [OpenShare connectWeixinWithAppId:@"wxd930ea5d5a258f4f"];
+    
+    [OpenShare connectQQWithAppId:@"100424468"];
+}
+// 配置微信的 appkey, 也就是在工程配置里面添加的 scheme
+- (void)setUpWeChat {
+    [WXApi registerApp:@"wxd930ea5d5a258f4f" withDescription:@"我是谁"];
+}
+
+
 - (void)setupBaiduMap
 {
     _mapManager = [[BMKMapManager alloc]init];
@@ -76,18 +102,16 @@
 }
 
 
-
 - (void)setUpJpush:(NSDictionary *)launchOptions
 {
     [JPUSHService setupWithOption:launchOptions appKey:@"7a7480d43b98d2a36626c517" channel:@"appStore" apsForProduction:NO];
     
     //	if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
-    //		;
+
     //	}
     //	UIUserNotificationTypeBadge   = 1 << 0, // the application may badge its icon upon a notification being received
     //	UIUserNotificationTypeSound   = 1 << 1, // the application may play a sound upon a notification being received
     //	UIUserNotificationTypeAlert   = 1 << 2
-    
     // 申请远程推送权限
     [JPUSHService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert) categories:nil];
 }
@@ -98,7 +122,6 @@
     
     // 当用户推出登录的时候，要将别名设置为空。
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(MKlogoffSuccess:) name:@"MKLogOffSuccess" object:nil];
-    
 }
 //登陆成功
 - (void)MKloginSuccess:(NSNotification *)noti {
@@ -133,14 +156,11 @@
             
             [[NSUserDefaults standardUserDefaults] setObject:aliasInfo forKey:@"alias"];
         }
-        
         WLog(@"%d, %@, %@", iResCode, iTags, iAlias);
-        
     }];
 }
 //每次进入应用是判断别名是否设置成功
 - (void)setAlias {
-    
     // 取出存放的别名设置
     NSDictionary *aliasInfo = [[NSUserDefaults standardUserDefaults] objectForKey:@"alias"];
     
@@ -156,7 +176,6 @@
     [JPUSHService setTags:nil alias:@"" fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias) {
         // iResCode 为0 表示设置成功，6002 表示超时
         WLog(@"%d, %@, %@", iResCode, iTags, iAlias);
-        
     }];
 }
 
@@ -171,7 +190,6 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     NSString *lastRunVersion = [defaults objectForKey:LAST_RUN_VERSION_KEY];
-    
     if (!lastRunVersion) {
         [defaults setObject:currentVersion forKey:LAST_RUN_VERSION_KEY];
         //		return YES;
@@ -319,14 +337,84 @@
 {
     NSString *type = [shortcutItem type];
     if ([type isEqualToString:@"First"]) {
-    
+        
+        
+        UINavigationController *naviVC = [(MKViewController *)self.window.rootViewController selectedViewController];
+        
+        [naviVC pushViewController:[[MKScanViewController alloc] init] animated:YES];
+
     }else{
     
     }
     
+}
+
+
+// 1. 从别的应用打开本应用，并且带回的 url 需要咱们自己处理,不知道是具体从哪个应用调回的。
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    // 返回一个 bool 类型，表示能否处理这个 url
+    	//return [WXApi handleOpenURL:url delegate:self];
+    
+    //return [UMSocialSnsService handleOpenURL:url];
     
     
+    // 让 OpenShare 去处理第三方应用传回的 url，处理成功或者失败
+    return [OpenShare handleOpenURL:url];
+}
+
+// 2. 从别的应用打开本应用，并且带回的 url 需要咱们自己处理,但是知道具体是从哪个应用回调回来的。
+// 比如分享完成，登录成功。
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    	//return [WXApi handleOpenURL:url delegate:self];
+   // return [UMSocialSnsService handleOpenURL:url];
+    if ([OpenShare handleOpenURL:url]) {
+        return YES;
+    }else {
+        return [WXApi handleOpenURL:url delegate:self];
+    }
     
+    return [OpenShare handleOpenURL:url];
+
+}
+
+
+/*! @brief 收到一个来自微信的请求，第三方应用程序处理完后调用sendResp向微信发送结果
+ *
+ * 收到一个来自微信的请求，异步处理完成后必须调用sendResp发送处理结果给微信。
+ * 可能收到的请求有GetMessageFromWXReq、ShowMessageFromWXReq等。
+ * @param req 具体请求内容，是自动释放的
+ */
+-(void) onReq:(BaseReq*)req {
     
 }
+
+
+/*! @brief 发送一个sendReq后，收到微信的回应
+ *
+ * 收到一个来自微信的处理结果。调用一次sendReq后会收到onResp。
+ * 可能收到的处理结果有SendMessageToWXResp、SendAuthResp等。
+ * @param resp具体的回应内容，是自动释放的
+ */
+
+-(void) onResp:(BaseResp*)resp {
+    
+    SendAuthResp *authResp = resp;
+    
+    NSString *code = authResp.code;
+    
+    // 当第三方（微信）登录成功之后，会返回一个 code ,我们可以通过 code 去获取操作微信的 access_token，只有这个 token 才能获取用户信息等等操作。
+    // 但是其他的一些第三方平台，可能直接把 access_token 和 openuserId 返回给我们，直接可以操作。
+    //	https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code
+    
+    // 异步和同步方法，前面加 a 就是异步
+    //	dispatch_sync(<#dispatch_queue_t queue#>, <#^(void)block#>)
+    // 异步于主线程获取微信的 access_token
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSDictionary *dic = [NSDictionary dictionaryWithContentsOfURL:[NSURL URLWithString: [NSString stringWithFormat:@"https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxd930ea5d5a258f4f&secret=0c806938e2413ce73eef92cc3&code=%@&grant_type=authorization_code", code]]];
+        WLog(@"%@", dic);
+        
+    });
+    
+}
+
 @end
